@@ -54,8 +54,8 @@ set(${pn}_VERSION_STR "${${pn}_VERSION_MAJOR}.${${pn}_VERSION_MINOR}.${${pn}_VER
 
 set(${pn}_VENDOR_STR "Gavin Beatty")
 set(${pn}_CONTACT_STR "Gavin Beatty <gavinbeatty@gmail.com>")
-set(${pn}_HOMEPAGE_STR "http://repo.or.cz/p/tm")
-set(${pn}_DESCRIPTION_STR "Plugin loading in C.")
+set(${pn}_HOMEPAGE_STR "http://code.google.com/p/libtm/")
+set(${pn}_DESCRIPTION_STR "Simple timing functions in C.")
 
 set(${pn}_build_include_dirs
 "${CMAKE_CURRENT_SOURCE_DIR}/src"
