@@ -1,0 +1,6 @@
+
+set(_p "@pn@")
+set(${_p}_INCLUDE_DIRS "@include_dirs@")
+include("@export_file@")
+
+

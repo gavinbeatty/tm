@@ -1,0 +1,42 @@
+#ifndef TM_CONFIG_H_
+#define TM_CONFIG_H_
+
+#include <decl/decl.h>
+#include <plat/plat.h>
+
+DECL_BEGIN_C
+
+#define TM_VERSION_MAJOR      @tm_VERSION_MAJOR@
+#define TM_VERSION_MINOR      @tm_VERSION_MINOR@
+#define TM_VERSION_PATCH      @tm_VERSION_PATCH@
+#define TM_VERSION_STR        "@tm_VERSION_STR@"
+#define TM_HOMEPAGE_STR       "@tm_HOMEPAGE_STR@"
+#define TM_BUILD_TYPE_STR     "@CMAKE_BUILD_TYPE@"
+#define TM_CONTACT_STR        "@tm_CONTACT_STR@"
+
+#define TM_VERSION \
+    (((TM_VERSION_MAJOR)<<16)|((TM_VERSION_MINOR)<<8)|((TM_VERSION_PATCH)+0))
+#define TM_VERSION_CHECK(major,minor,patch) \
+    (((major) << 16)|((minor) << 8)|((patch)+0))
+
+
+#if TM_SHARED_LIB_BUILD || TM_STATIC_LIB_BUILD
+#   define TM_BUILD 1
+#endif
+
+#if TM_BUILD
+#   define TM_PUBLIC_FN DECL_EXPORT_FN
+#   define TM_PUBLIC_T DECL_EXPORT_T
+#   define TM_PUBLIC_VAR DECL_EXPORT_VAR
+#else
+#   define TM_PUBLIC_FN DECL_IMPORT_FN
+#   define TM_PUBLIC_T DECL_IMPORT_T
+#   define TM_PUBLIC_VAR DECL_IMPORT_VAR
+#endif
+#define TM_PRIVATE_FN DECL_HIDE_FN
+#define TM_PRIVATE_T DECL_HIDE_T
+#define TM_PRIVATE_VAR DECL_HIDE_VAR
+
+
+DECL_END_C
+#endif /* TM_CONFIG_H_ */
