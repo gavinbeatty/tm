@@ -1,15 +1,15 @@
-# pkg-config file generated for the project, @PROJECT_NAME@, by CMake.
+# pkg-config file generated for the project, @PROJECT_NAME@.
 
-prefix=@CMAKE_INSTALL_PREFIX@
+prefix=@PREFIX@
 exec_prefix=${prefix}
 libdir=${exec_prefix}/@libdir@
 includedir=${prefix}/@includedir@
 
 Name: @PROJECT_NAME@
-Description: @description_str@
-Version: @version_str@
-Requires: @pkgconfig_deps@
-URL: @homepage_str@
+Description: @DESCRIPTION@
+Version: @VERSION@
+Requires: plat decl
+URL: @HOMEPAGE@
 Libs: -L${libdir} -l@PROJECT_NAME@
 #Libs.private:
 Cflags: -I${includedir}

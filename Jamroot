@@ -1,0 +1,23 @@
+project /tm ;
+
+lib tm
+    : # sources
+    [ glob src/tm/*.c ]
+    #/tm/plat//headers
+    #/tm/decl//headers
+    : # requirements
+    <include>src
+    : # default-build
+    <link>static
+    : # usage-requirements
+    <include>src
+;
+
+stage stage/
+    : # sources
+    tm
+    : # requirements
+    : # default-build
+    <link>static
+    : # usage-requirements
+;

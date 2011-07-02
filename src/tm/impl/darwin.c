@@ -2,9 +2,8 @@
 
 #include <sys/time.h>
 
-#include <mach/clock.h>
-#include <mach/clock_types.h>
 #include <mach/mach_host.h>
+#include <mach/clock_types.h>
 #include <mach/clock.h>
 
 #include <assert.h>

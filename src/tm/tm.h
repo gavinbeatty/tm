@@ -1,6 +1,6 @@
 /* vi: set ft=c expandtab: */
-#ifndef TM_H_
-#define TM_H_
+#ifndef TM_TM_H_
+#define TM_TM_H_
 
 #include <tm/config.h>
 
@@ -15,4 +15,4 @@ double tm_timespec_to_double(const struct tm_timespec_t* tspec);
 float tm_timespec_to_float(const struct tm_timespec_t* tspec);
 
 DECL_END_C
-#endif /* TM_H_ */
+#endif
