@@ -4,6 +4,12 @@ SHELL = /bin/sh
 .PHONY: help all configure config conf confclean install-libdir install-static install-shared install-headers install
 help:
 	@echo "Targets: help all configure confclean install"
+	@echo "Variables:"
+	@echo "  PREFIX: The install prefix for platform independent files (like header and config files)."
+	@echo "  EXEC_PREFIX: The same for platform dependent files (like libraries)."
+	@echo "  SHARED_LIBRARY: The name of the shared library to install. Check inside stage/ to see."
+	@echo "                  e.g., Unix: libtm.so, Mac OS X: libtm.dylib, Windows: libtm.dll"
+	@echo "  ADDRESS_MODEL: Only useful to set to 64 so libs are installed to \$(EXEC_PREFIX)/lib64"
 
 PROJECT_NAME = tm
 HOMEPAGE = http://github.com/gavinbeatty/tm
