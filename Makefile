@@ -1,15 +1,9 @@
 SHELL = /bin/sh
 .SUFFIXES: .c .o
 
-.PHONY: help all configure config conf confclean install-libdir install-static install-shared install-headers install
+.PHONY: help all configure config conf confclean
 help:
-	@echo "Targets: help all configure confclean install"
-	@echo "Variables:"
-	@echo "  PREFIX: The install prefix for platform independent files (like header and config files)."
-	@echo "  EXEC_PREFIX: The same for platform dependent files (like libraries)."
-	@echo "  SHARED_LIBRARY: The name of the shared library to install. Check inside stage/ to see."
-	@echo "                  e.g., Unix: libtm.so, Mac OS X: libtm.dylib, Windows: libtm.dll"
-	@echo "  ADDRESS_MODEL: Only useful to set to 64 so libs are installed to \$(EXEC_PREFIX)/lib64"
+	@echo "Targets: help all configure confclean"
 
 PROJECT_NAME = tm
 HOMEPAGE = http://github.com/gavinbeatty/tm
@@ -23,10 +17,6 @@ DESCRIPTION = Simple cross-platform time functions
 
 SED ?= sed
 RM ?= rm -f
-INSTALL ?= install
-INSTALL_DIR ?= $(INSTALL) -d
-INSTALL_DATA ?= $(INSTALL) -m 0644
-INSTALL_LIB ?= $(INSTALL) -m 0755
 
 gen_cc = @echo '    CC        ' $@;
 gen_ld = @echo '    LINK      ' $@;
@@ -59,17 +49,3 @@ src/tm/config.h: src/tm/config.h.in
 		-e 's#@VERSION@#$(VERSION)#g' \
 		src/tm/config.h.in > src/tm/config.h
 
-SHARED_LIBRARY ?= libtm.so
-
-$(DESTROOT)$(EXEC_PREFIX)/lib$(ADDRESS_MODEL):
-	$(INSTALL_DIR) $(DESTROOT)$(EXEC_PREFIX)/lib$(ADDRESS_MODEL)
-install-static: configure $(DESTROOT)$(EXEC_PREFIX)/lib$(ADDRESS_MODEL)
-	$(INSTALL_LIB) stage/libtm.a $(DESTROOT)$(EXEC_PREFIX)/lib$(ADDRESS_MODEL)/
-install-shared: configure $(DESTROOT)$(EXEC_PREFIX)/lib$(ADDRESS_MODEL)
-	$(INSTALL_LIB) stage/$(SHARED_LIBRARY) $(DESTROOT)$(EXEC_PREFIX)/lib$(ADDRESS_MODEL)/
-install-headers:
-	$(INSTALL_DIR) $(DESTROOT)$(PREFIX)/include/tm
-	$(INSTALL_DATA) $(wildcard src/tm/*.h) $(DESTROOT)$(PREFIX)/include/tm/
-	$(INSTALL_DIR) $(DESTROOT)$(PREFIX)/include/tm/impl
-	$(INSTALL_DATA) $(wildcard src/tm/*.h) $(DESTROOT)$(PREFIX)/include/tm/impl/
-install: install-static install-shared install-headers

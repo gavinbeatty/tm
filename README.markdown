@@ -12,12 +12,13 @@ Install
 -------
 To configure, just run `make configure`.
 
-To build, run `bjam`.
+To build, run `bjam`. By default, only the static library is built. Build the
+shared library with `bjam link=shared`.
 
-To install, `sudo make install`. The default prefix is `/usr/local`.
+To install, `sudo bjam install`. The default prefix is `/usr/local`.
 
 Here are some examples for installing:
-* `sudo make install`
-* `make install PREFIX="$HOME"/.local`
-* `fakeroot make install PREFIX=/usr EXEC_PREFIX=/mnt/usr ADDRESS_MODEL=64 DESTROOT=./tm-bin SHARED_LIBRARY=libtm.dylib`
+* `sudo bjam install link=shared address-model=64 arch=x86_64`
+* `bjam install -sPREFIX="$HOME"/.local`
+* `fakeroot bjam install -sPREFIX=/usr -sEXEC_PREFIX=/exec/usr -sDESTROOT=./tm-bin`
 

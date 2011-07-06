@@ -11,7 +11,7 @@ lib tm
     <include>src
 ;
 
-stage stage/
+stage stage
     : # sources
     tm
     : # requirements
@@ -19,19 +19,21 @@ stage stage/
     <link>static
     : # usage-requirements
 ;
+explicit stage ;
 
-PREFIX ?= /usr ;
-DESTROOT ?= / ;
-
-path-constant prefix : $(PREFIX) ;
-path-constant destroot : $(DESTROOT) ;
+PREFIX = [ modules.peek : PREFIX ] ;
+EXEC_PREFIX = [ modules.peek : EXEC_PREFIX ] ;
+DESTROOT = [ modules.peek : DESTROOT ] ;
+path-constant destroot : $(DESTROOT:E=/) ;
+path-constant prefix : $(PREFIX:E=/usr) ;
+path-constant exec_prefix : $(EXEC_PREFIX:E=$(prefix)) ;
 
 install install-lib
     : # sources
     tm
     : # requirements
-    <location>$(destroot)$(prefix)/lib/
-    <address-model>64:<location>$(destroot)$(prefix)/lib64/
+    <location>$(destroot)$(exec_prefix)/lib/
+    <address-model>64:<location>$(destroot)$(exec_prefix)/lib64/
     : # default-build
 ;
 
