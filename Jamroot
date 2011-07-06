@@ -1,3 +1,5 @@
+import testing ;
+
 lib tm
     : # sources
     [ glob src/tm/*.c ]
@@ -10,6 +12,27 @@ lib tm
     : # usage-requirements
     <include>src
 ;
+
+exe test_monotonic
+    : # sources
+    tests/test_monotonic.c
+    tm/<link>static
+    : # requirements
+    <include>tests
+    : # default-build
+    <link>static
+    : # usage-requirements
+    <include>tests
+;
+run test_monotonic
+    : # args
+    : # input-files
+    : # requirements
+    : # target-name
+    run_test_monotonic
+    : # default-build
+;
+
 
 stage stage
     : # sources

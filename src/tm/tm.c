@@ -15,12 +15,12 @@
 
 double tm_timespec_to_double(const struct tm_timespec_t* tspec)
 {
-    assert(tspec);
+    assert(NULL != tspec);
     return (tspec->tv_sec + (tspec->tv_nsec * 0.000000001));
 }
 float tm_timespec_to_float(const struct tm_timespec_t* tspec)
 {
-    assert(tspec);
+    assert(NULL != tspec);
     return (tspec->tv_sec + (tspec->tv_nsec * 0.000000001f));
 }
 
