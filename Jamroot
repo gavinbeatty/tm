@@ -1,5 +1,3 @@
-project /tm ;
-
 lib tm
     : # sources
     [ glob src/tm/*.c ]
@@ -22,10 +20,21 @@ stage stage/
     : # usage-requirements
 ;
 
-#alias install : install-lib install-pkgconfig
-#install install-lib : tm :
-#    <location>$(DESTROOT)$(PREFIX)/usr/lib64/
-#    <address-model>64:<location>$(DESTROOT)$(PREFIX)/usr/lib64/
-#;
-#install install-pkgconfig : tm.pc : <location>$(DESTROOT)$(PREFIX)/usr/lib/pkgconfig ;
-#explicit install install-lib install-pkgconfig ;
+PREFIX ?= /usr ;
+DESTROOT ?= / ;
+
+path-constant prefix : $(PREFIX) ;
+path-constant destroot : $(DESTROOT) ;
+
+install install-lib
+    : # sources
+    tm
+    : # requirements
+    <location>$(destroot)$(prefix)/lib/
+    <address-model>64:<location>$(destroot)$(prefix)/lib64/
+    : # default-build
+;
+
+install install-pkgconfig : .//tm.pc : <location>$(destroot)$(prefix)/lib/pkgconfig ;
+alias install : install-lib install-pkgconfig ;
+explicit install install-lib install-pkgconfig ;
