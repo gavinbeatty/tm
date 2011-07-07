@@ -48,7 +48,7 @@ PREFIX = [ modules.peek : PREFIX ] ;
 EXEC_PREFIX = [ modules.peek : EXEC_PREFIX ] ;
 DESTROOT = [ modules.peek : DESTROOT ] ;
 path-constant destroot : $(DESTROOT:E=/) ;
-path-constant prefix : $(PREFIX:E=/usr) ;
+path-constant prefix : $(PREFIX:E=/usr/local) ;
 path-constant exec_prefix : $(EXEC_PREFIX:E=$(prefix)) ;
 
 install install-lib
