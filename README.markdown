@@ -10,7 +10,8 @@ Copyright and license information is available in the included LICENSE.txt.
 
 Install
 -------
-To configure, just run `make configure`.
+To generate config.h and tm.pc, run `make configure`. The prefix in tm.pc is
+determinted at this time, so do `make conf PREFIX=/your/path`.
 
 To build, run `bjam`. By default, only the static library is built. Build the
 shared library with `bjam link=shared`.
