@@ -1,16 +1,13 @@
-# pkg-config file generated for the project, @PROJECT_NAME@.
-
+# pkg-config file generated for tm.
 prefix=@PREFIX@
-exec_prefix=${prefix}
-libdir=${exec_prefix}/@libdir@
-includedir=${prefix}/@includedir@
+exec_prefix=@EXEC_PREFIX@
+libdir=${exec_prefix}/@LIBDIR@
+includedir=${prefix}/include
 
-Name: @PROJECT_NAME@
-Description: @DESCRIPTION@
-Version: @VERSION@
+Name: tm
+Description: Simple cross-platform time functions.
+Version: @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@
 Requires: plat decl
-URL: @HOMEPAGE@
-Libs: -L${libdir} -l@PROJECT_NAME@
-#Libs.private:
+URL: http://github.com/gavinbeatty/tm
+Libs: -L${libdir} -ltm
 Cflags: -I${includedir}
-

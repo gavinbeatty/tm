@@ -5,15 +5,12 @@ SHELL = /bin/sh
 help:
 	@echo "Targets: help all configure confclean"
 
-PROJECT_NAME = tm
-HOMEPAGE = http://github.com/gavinbeatty/tm
 PREFIX ?= /usr/local
 EXEC_PREFIX ?= $(PREFIX)
+LIBDIR ?= lib
 VERSION_MAJOR = 1
 VERSION_MINOR = 1
 VERSION_PATCH = 0
-VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)
-DESCRIPTION = Simple cross-platform time functions
 
 SED ?= sed
 RM ?= rm -f
@@ -34,11 +31,12 @@ all: configure
 
 tm.pc: tm.pc.in
 	$(gen_p)$(SED) \
-		-e 's#@PROJECT_NAME@#$(PROJECT_NAME)#g' \
-		-e 's#@VERSION@#$(VERSION)#g' \
-		-e 's#@HOMEPAGE@#$(HOMEPAGE)#g' \
-		-e 's#@DESCRIPTION@#$(DESCRIPTION)#g' \
 		-e 's#@PREFIX@#$(PREFIX)#g' \
+		-e 's#@EXEC_PREFIX@#$(EXEC_PREFIX)#g' \
+		-e 's#@VERSION_MAJOR@#$(VERSION_MAJOR)#g' \
+		-e 's#@VERSION_MINOR@#$(VERSION_MINOR)#g' \
+		-e 's#@VERSION_PATCH@#$(VERSION_PATCH)#g' \
+		-e 's#@LIBDIR@#$(LIBDIR)#g' \
 		tm.pc.in > tm.pc
 
 src/tm/config.h: src/tm/config.h.in
@@ -46,6 +44,5 @@ src/tm/config.h: src/tm/config.h.in
 		-e 's#@VERSION_MAJOR@#$(VERSION_MAJOR)#g' \
 		-e 's#@VERSION_MINOR@#$(VERSION_MINOR)#g' \
 		-e 's#@VERSION_PATCH@#$(VERSION_PATCH)#g' \
-		-e 's#@VERSION@#$(VERSION)#g' \
 		src/tm/config.h.in > src/tm/config.h
 

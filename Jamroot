@@ -3,10 +3,12 @@ import testing ;
 lib tm
     : # sources
     [ glob src/tm/*.c ]
-    #/tm/plat//headers XXX fixme
-    #/tm/decl//headers XXX fixme
+    /user-config/plat//headers
+    /user-config/decl//headers
     : # requirements
     <include>src
+    <link>static:<define>TM_STATIC_LIB_BUILD=1
+    <link>shared:<define>TM_SHARED_LIB_BUILD=1
     : # default-build
     <link>static
     : # usage-requirements
